@@ -462,7 +462,7 @@ static int op_init(struct libusb_context *ctx)
 
 	if (!max_iso_packet_len) {
 		if (kernel_version_ge(&kversion,3,10,0))
-			max_iso_packet_len = 49152;
+			max_iso_packet_len = /* tmm */ 96*1024 /* 49152 */;
 		else if (kernel_version_ge(&kversion,2,6,18))
 			max_iso_packet_len = 8192;
 		else
