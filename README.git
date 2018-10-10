@@ -11,6 +11,32 @@ configure with a default set of options, and will therefore generate a Makefile,
 whereas the latter does not invoke configure at all. If using autogen.sh, note
 that you can also append options, that will be passed as is to configure.
 
+On Ubuntu 16.0.4 LTS, we had to also add:
+
+```shell
+apt-get install libtoolize
+apt-get install libtool-bin
+apt-get install libudev-dev
+```
+
+Then we had to do:
+
+```shell
+git stash --all
+libtoolize
+./autogen.sh
+```
+
+Otherwise we got the dread:
+
+```console
+lib/Makefile.am:31: error: Libtool library used but 'LIBTOOL' is undefined
+lib/Makefile.am:31:   The usual way to define 'LIBTOOL' is to add 'LT_INIT'
+lib/Makefile.am:31:   to 'configure.ac' and run 'aclocal' and 'autoconf' again.
+lib/Makefile.am:31:   If 'LT_INIT' is in 'configure.ac', make sure
+lib/Makefile.am:31:   its definition is in aclocal's search path.
+```
+
 OS X-specific notes:
 -------------------
 
@@ -33,9 +59,9 @@ public account on github, if you don't have one already, and then fork a new
 libusb repository under this account from https://github.com/libusb/libusb.
 
 Then you can create a git branch for your work, that we will be able to better
-reference and test. 
+reference and test.
 
 We also suggest that, if you are planning to bring in a large development, you
 try to involve the libusb community early by letting the mailing list know, as
-you may find that other people might be eager to help you out. 
+you may find that other people might be eager to help you out.
 See http://mailing-list.libusb.info for details on how to join the mailing list.
